@@ -83,8 +83,8 @@ def dev(h5filename, output_path, demo=False):
     # ds.isel(point=range(0, ds.point.size, 1_000)
     # ds[varnames].isel(point=range(100_000))
     ds.chunk({"time": -1, "location": 2_000}).to_zarr(
-        zarr_path / "WTK_dev.zarr",
-        zarr_version=3,
+        output_path,
+        zarr_version=2,
         encoding=encoding,
     )
 
