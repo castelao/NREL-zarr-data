@@ -30,3 +30,10 @@ nrel-rex = ">=0.2.84,<0.3"
 crc32c = ">=2.7.1, <3"
 numcodecs = ">=0.15.0, <0.16"
 zarr = ">=3.0"
+
+[environments]
+default = { solve-group = "default" }
+dev = { features = ["dev"], solve-group = "default" }
+
+[feature.dev.dependencies]
+ruff = "*"
