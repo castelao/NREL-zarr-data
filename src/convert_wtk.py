@@ -84,7 +84,7 @@ def dev(h5filename, output_path, demo=False):
     # ds[varnames].isel(point=range(100_000))
     ds.chunk({"time": -1, "location": 2_000}).to_zarr(
         output_path,
-        zarr_version=2,
+        zarr_format=2,
         encoding=encoding,
     )
 
