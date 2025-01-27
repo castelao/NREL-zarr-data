@@ -80,11 +80,11 @@ def dev(h5filename, output_path, demo=False):
     # ds = ds[[v for v in ds if v.startswith("temperature") or v.startswith("pressure")]]
     # ds = ds.isel(point=range(0, ds.point.size, 100_000))
     if demo:
-        ds = ds.isel(location=range(10_000))
+        ds = ds.isel(location=range(100_000))
     # 1_000 x 1_000 ~= 1MB
     # ds.isel(point=range(0, ds.point.size, 1_000)
     # ds[varnames].isel(point=range(100_000))
-    ds.chunk({"time": -1, "location": 2_000}).to_zarr(
+    ds.chunk({"time": -1, "location": 3_000}).to_zarr(
         output_path,
         zarr_format=3,
         encoding=encoding,
