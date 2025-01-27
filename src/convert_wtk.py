@@ -69,12 +69,12 @@ def dev(h5filename, output_path, demo=False):
 
     # from numcodecs import Blosc
     # compressor = Blosc(cname="zstd", clevel=9, shuffle=Blosc.SHUFFLE)
-    compressor = zarr.codecs.BloscCodec(cname="zstd", clevel=9, shuffle=zarr.codecs.BloscShuffle.shuffle)
+    compressors = zarr.codecs.BloscCodec(cname="zstd", clevel=9, shuffle=zarr.codecs.BloscShuffle.shuffle)
 
     for v in varnames:
         encoding[v] = encoding_per_type[v.split("_")[0]]
         encoding[v]["_FillValue"] = netCDF4.default_fillvals[encoding[v]["dtype"]]
-        encoding[v]["compressor"] = compressor
+        encoding[v]["compressors"] = compressors
 
     # subset for development
     # ds = ds[[v for v in ds if v.startswith("temperature") or v.startswith("pressure")]]
