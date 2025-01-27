@@ -67,6 +67,9 @@ def fix_time(ds):
     # Figure out which type of calendar it is
     # ds.["time"].attrs["calendar"]
 
+    # We don't need this anymore
+    ds = ds.drop_vars(["time_index"])
+
     return ds
 
 

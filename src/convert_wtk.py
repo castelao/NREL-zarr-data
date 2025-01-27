@@ -14,11 +14,11 @@ def dev(h5filename, output_path, demo=False):
     """Big mess. Code in development"""
 
     ds = xr.open_mfdataset(h5filename, mask_and_scale=False, engine="netcdf4")
-    ds = ds.rename_dims({"phony_dim_2": "time"})
-    ds["time"] = pd.DatetimeIndex(ds["time_index"].values)
+    ds = fix_time(ds)
+
     ds["lat"] = ds.coordinates.isel(phony_dim_1=0)
     ds["lon"] = ds.coordinates.isel(phony_dim_1=1)
-    ds = ds.drop_vars(["time_index", "coordinates"])
+    ds = ds.drop_vars(["coordinates"])
     ds = ds.rename_dims({"phony_dim_0": "location"})
     ds = ds.set_coords(["lat", "lon"])
 
