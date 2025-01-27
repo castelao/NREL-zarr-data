@@ -5,6 +5,7 @@ import netCDF4
 from numcodecs import Blosc
 import pandas as pd
 import xarray as xr
+import zarr.codecs
 
 from mylib import *
 
@@ -66,8 +67,9 @@ def dev(h5filename, output_path, demo=False):
     varnames = [v for v in ds if v.split("_")[0] in encoding_per_type]
     encoding = {}
 
-    from numcodecs import Blosc
-    compressor = Blosc(cname="zstd", clevel=9, shuffle=Blosc.SHUFFLE)
+    # from numcodecs import Blosc
+    # compressor = Blosc(cname="zstd", clevel=9, shuffle=Blosc.SHUFFLE)
+    compressor = zarr.codecs.BloscCodec(cname="zstd", clevel=9, shuffle=zarr.codecs.BloscShuffle.shuffle)
 
     for v in varnames:
         encoding[v] = encoding_per_type[v.split("_")[0]]
