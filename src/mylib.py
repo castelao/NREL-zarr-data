@@ -43,6 +43,33 @@ def fix_variable(da):
     # da.encoding = encoding
     return da
 
+def fix_time(ds):
+    """Fix dimension name and data type for time
+
+    Using phony_dim_X is not informative. Instead let's call it time.
+
+    The actual time is stored as a string. Although that is easy for a
+    human to read, it is not actionable. Any operation with time would
+    require first validate if that string is a valid date/time, then
+    convert that to some actionable data type, such as np.datetime64.
+    Another issue is the space used. This string takes 19B versus the
+    8B used by np.datetime64 which has ns resolution.
+    """
+    assert "time_index" in ds
+
+    # Rename the phony dimension to time
+    assert len(ds["time_index"].dims) == 1
+    ds = ds.rename_dims({ds["time_index"].dims[0]: "time"})
+
+    assert ds["time_index"].dtype.kind == "U", "Expected a `time_index` of type unicode"
+    ds["time"] = pd.DatetimeIndex(ds["time_index"].values)
+
+    # Figure out which type of calendar it is
+    # ds.["time"].attrs["calendar"]
+
+    return ds
+
+
 standard_attributes = {
     "temperature": {
         "standard_name": "air_temperature",
