@@ -74,25 +74,41 @@ def fix_time(ds):
 
 
 standard_attributes = {
+    "time": {
+        "long_name": "time",
+        "calendar": "proleptic_gregorian",
+    }
+    "latitude": {
+        "standard_name": "latitude",
+        "units": "degree_north",
+    },
+    "longitude": {
+        "standard_name": "longitude",
+        "units": "degree_east",
+    },
     "temperature": {
         "standard_name": "air_temperature",
-        "units": "K",
+        "units": "C",
     },
     "windspeed": {
         "standard_name": "wind_speed",
+        "units": "m s-1",
     },
     "winddirection": {
         "standard_name": "wind_to_direction",
+        "units": "degree",
     },
     "pressure": {
         "standard_name": "air_pressure",
+        "units": "Pa",
     },
     "relativehumidity": {
         "standard_name": "relative_humidity",
+        "units": 1,
     },
 }
 
-def add_standard_name(ds):
+def add_attributes(ds):
     for v in ds:
         if attrs:=v.split("_")[0] in standard_attributes:
             for k, v in standard_attributes[attrs].items():
