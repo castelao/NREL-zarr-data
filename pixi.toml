@@ -14,16 +14,16 @@ version = "0.1.0"
 [dependencies]
 python = ">=3.11.0"
 dask = ">=2024.8.1,<2026"
-xarray = ">=2025.1.1,<2026"
 dask-labextension = ">=7.0.0,<8"
-netcdf4 = ">=1.6.3,<2"
-jupyterlab = ">=4.3.4,<5"
-scipy = ">=1.15.1,<2"
 h5py = ">=3.8.0,<4"
-matplotlib = ">=3.9.1,<4"
-nodejs = ">=18.15.0,<22.14"
+jupyterlab = ">=4.3.4,<5"
 ipython = ">=8.31.0,<9"
+matplotlib = ">=3.9.1,<4"
+netcdf4 = ">=1.6.3,<2"
+nodejs = ">=18.15.0,<22.14"
 nrel-rex = ">=0.2.84,<0.3"
+scipy = ">=1.15.1,<2"
+xarray = ">=2025.1.1,<2026"
 
 [pypi-dependencies]
 # For now, the required crc32c is not available in conda-forge for linux-arrch64
