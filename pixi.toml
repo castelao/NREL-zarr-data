@@ -1,8 +1,8 @@
 [project]
 authors = [
   "Gui Castelao <guilherme@castelao.net>",
-	"Paul Pinchuk <ppinchuk@nrel.gov>",
-	]
+  "Paul Pinchuk <ppinchuk@nrel.gov>",
+  ]
 channels = ["pytorch", "conda-forge", "anaconda", "main"]
 description = "Migrating and benchmarking NREL data with Zarr, Xarray, & Dask."
 name = "NREL-zarr-data"
